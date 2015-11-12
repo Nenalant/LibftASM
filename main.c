@@ -58,6 +58,8 @@ int		ft_toupper(int c);
 int		ft_puts(char *str);
 void	ft_putstr(char const *s);
 void	ft_putchar(char c);
+int		ft_islower(int c);
+int		ft_isupper(int c);
 
 void	ft_flush_write(int fd, char *str, int len)
 {
@@ -283,10 +285,6 @@ static void	test_bzero(void)
 			str3[]="one test string",
 			str4[]="two test string";
 
-	set(MAGENTA);
-	set(BOLD);
-	printf("\n\t\t\t\t\t\t\t\t=============== FUNCTIONS ===============\n\n");
-	set(UNCOLOR);
 	print_test_name("------------BZERO------------");
 	init(ctrl, 2, 0);
 	init(test, 2, 0);
@@ -618,10 +616,6 @@ static void	test_strcpy(void)
 	char	*p1;
 	char	*p2;
 	
-	set(MAGENTA);
-	set(BOLD);
-	printf("\t\t\t\t\t\t\t\t================= BONUS =================\n\n");
-	set(UNCOLOR);
 	print_test_name("------------STRCPY------------");
 	printf("\n\n");
 	test_simple();
@@ -649,6 +643,40 @@ static void	test_strcpy(void)
 	free(dst2);
 	test_hard();
 	print_test_results(test, ctrl, 2, NULL);
+	printf("\n");
+}
+
+void	test_islower(void)
+{
+	int		i, test[1024], ctrl[1024];
+
+	print_test_name("------------ISLOWER------------");
+	i = 0;
+	while (i < 1024)
+	{
+		ctrl[i] = islower(i);
+		test[i] = ft_islower(i);
+		++i;
+	}
+	test_hard();
+	print_test_results_summary(test, ctrl, 1024);
+	printf("\n");
+}
+
+void	test_isupper(void)
+{
+	int		i, test[1024], ctrl[1024];
+
+	print_test_name("------------ISUPPER------------");
+	i = 0;
+	while (i < 1024)
+	{
+		ctrl[i] = isupper(i);
+		test[i] = ft_isupper(i);
+		++i;
+	}
+	test_hard();
+	print_test_results_summary(test, ctrl, 1024);
 	printf("\n");
 }
 
@@ -687,6 +715,10 @@ void	test_putstr(void)
 
 int			main(void)
 {
+	set(MAGENTA);
+	set(BOLD);
+	printf("\n\t\t\t\t\t\t\t\t=============== FUNCTIONS ===============\n\n");
+	set(UNCOLOR);
 	test_bzero();
 	test_strcat();
 	test_isalpha();
@@ -701,6 +733,13 @@ int			main(void)
 	test_memset();
 	test_memcpy();
 	test_strdup();
+
+	set(MAGENTA);
+	set(BOLD);
+	printf("\t\t\t\t\t\t\t\t================= BONUS =================\n\n");
+	set(UNCOLOR);
+	test_islower();
+	test_isupper();
 	test_strcpy();
 	test_putchar();
 	test_putstr();

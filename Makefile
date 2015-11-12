@@ -17,7 +17,9 @@ SRCS =	ft_bzero.s \
 		ft_strdup.s \
 		ft_strcpy.s \
 		ft_putchar.s \
-		ft_putstr.s
+		ft_putstr.s \
+		ft_islower.s \
+		ft_isupper.s
 
 SRCC =	main.c
 CCS = nasm -f macho64

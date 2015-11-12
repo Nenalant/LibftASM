@@ -10,6 +10,7 @@ _ft_strdup:
 	push rdi
 	call _ft_strlen
 	mov rdi, rax
+	inc rdi
 	call _malloc
 	mov rdi, rax
 	pop rsi

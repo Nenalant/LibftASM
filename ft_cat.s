@@ -10,8 +10,7 @@ _ft_cat:
 	push rsi
 	push rdx
 	mov rsi, 1
-	mov rax, 55
-	syscall
+	call _fcntl
 	cmp rax, 0
 	jne _ret
 	lea rsi, [rel buffer]
